@@ -1,9 +1,7 @@
 package com.array;
 
 import javax.sound.midi.Soundbank;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Tri {
     public static void main(String[] args) {
@@ -22,8 +20,40 @@ public class Tri {
         int[] arr1 = {1, 2, 2, 1}, arr2 = {2, 2};
 //        System.out.println(Arrays.toString(findIntersectionOfArrays(arr1, arr2)));
 //        System.out.println(Arrays.toString(intersect(arr1, arr2)));
-        System.out.println(Arrays.toString(findIntersectionOptimal(arr1, arr2)));
+//        System.out.println(Arrays.toString(findIntersectionOptimal(arr1, arr2)));
 
+        String s = "babgbag", t = "bag";
+        System.out.println(numDistinct(s, t));
+
+    }
+
+    private static int numDistinct(String s, String t) {
+        /*Map<Character, Integer> freqMap = new LinkedHashMap<>();
+        Map<Character, Integer> freqMap2 = new LinkedHashMap<>();
+
+        for (char c : t.toCharArray()) {
+            freqMap.put(c, freqMap.getOrDefault(c, 0) + 1);
+        }
+
+        for (char f : s.toCharArray()) {
+            freqMap2.put(f, freqMap2.getOrDefault(f, 0) + 1);
+        }
+
+        System.out.println(freqMap);
+        System.out.println(freqMap2);*/
+
+
+        int i = 0, j = 0;
+        while (i < s.length() && j < t.length()) {
+            if (s.charAt(i) == t.charAt(j)) {
+                System.out.println(s.charAt(i));
+            }
+            i++;
+            j++;
+        }
+
+
+        return 0;
     }
 
     private static int[] findIntersectionOfArrays(int[] arr1, int[] arr2) {
