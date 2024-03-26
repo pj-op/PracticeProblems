@@ -1,0 +1,102 @@
+The Baeldung Logo
+Start Here
+Courses ▼
+Guides ▼
+About ▼
+Regular Expressions \s and \s+ in Java
+Last updated: September 16, 2023
+
+SUUCCUUS
+
+Written by:Kai Yuan
+Java+Regex
+1. Overview
+String substitution is a standard operation when we process strings in Java.
+
+Thanks to the handy replaceAll() method in the String class, we can easily do string substitution with regular expressions. However, sometimes the expressions can be confusing, for example, \s and \s+. 
+
+In this short tutorial, we’ll have a look at the difference between the two regular expressions through examples.
+
+2. The Difference Between \s and \s+
+The regular expression \s is a predefined character class. It indicates a single whitespace character. Let’s review the set of whitespace characters:
+
+[ \t\n\x0B\f\r]
+The plus sign + is a greedy quantifier, which means one or more times. For example, expression X+ matches one or more X characters.
+
+Therefore, the regular expression \s matches a single whitespace character, while \s+ will match one or more whitespace characters.
+
+3. replaceAll() With a Non-Empty Replacement
+We’ve learned the meanings of regular expressions \s and \s+.
+
+Now, let’s have a look at how the replaceAll() method behaves differently with these two regular expressions.
+
+We’ll use a string as the input text for all examples:
+
+String INPUT_STR = "Text   With     Whitespaces!   ";
+Let’s try passing \s to the replaceAll() method as an argument:
+
+String result = INPUT_STR.replaceAll("\\s", "_");
+assertEquals("Text___With_____Whitespaces!___", result);
+The replaceAll() method finds single whitespace characters and replaces each match with an underscore. We have eleven whitespace characters in the input text. Thus, eleven replacements will occur.
+
+Next, let’s pass the regular expression \s+ to the replaceAll() method:
+
+String result = INPUT_STR.replaceAll("\\s+", "_");
+assertEquals("Text_With_Whitespaces!_", result);
+Due to the greedy quantifier +, the replaceAll() method will match the longest sequence of contiguous whitespace characters and replace each match with an underscore.
+
+In our input text, we have three sequences of contiguous whitespace characters. Therefore, each of the three will become an underscore.
+
+4. replaceAll() With an Empty Replacement
+Another common usage of the replaceAll() method is to remove matched patterns from the input text. We usually do it by passing an empty string as the replacement to the method.
+
+Let’s see what result we’ll get if we remove whitespace characters using the replaceAll() method with the \s regular expression:
+
+String result1 = INPUT_STR.replaceAll("\\s", "");
+assertEquals("TextWithWhitespaces!", result1);
+Now, we’ll pass the other regular expression \s+ to the replaceAll() method:
+
+String result2 = INPUT_STR.replaceAll("\\s+", "");
+assertEquals("TextWithWhitespaces!", result2);
+Because the replacement is an empty string, the two replaceAll() calls produce the same result, even though the two regular expressions have different meanings:
+
+assertEquals(result1, result2);
+If we compare the two replaceAll() calls, the one with \s+ is more efficient. This is because it does the job with only three replacements while the call with \s will do eleven replacements.
+
+5. Conclusion
+In this short article, we learned about the regular expressions \s and \s+.
+
+We also saw how the replaceAll() method behaved differently with the two expressions.
+
+As always, the code is available over on GitHub.
+
+Get started with Spring 5 and Spring Boot 2, through the Learn Spring course:
+>> CHECK OUT THE COURSE
+Build your API with SPRING - book cover
+Build your API with SPRING - icon
+Learning to build your API
+with Spring?
+Download the E-book
+Comments are closed on this article!
+The Baeldung logo
+COURSES
+ALL COURSES
+ALL BULK COURSES
+ALL BULK TEAM COURSES
+THE COURSES PLATFORM
+SERIES
+JAVA “BACK TO BASICS” TUTORIAL
+JACKSON JSON TUTORIAL
+APACHE HTTPCLIENT TUTORIAL
+REST WITH SPRING TUTORIAL
+SPRING PERSISTENCE TUTORIAL
+SECURITY WITH SPRING
+SPRING REACTIVE TUTORIALS
+ABOUT
+ABOUT BAELDUNG
+THE FULL ARCHIVE
+EDITORS
+JOBS
+OUR PARTNERS
+PARTNER WITH BAELDUNG
+TERMS OF SERVICE PRIVACY POLICY COMPANY INFO CONTACT
