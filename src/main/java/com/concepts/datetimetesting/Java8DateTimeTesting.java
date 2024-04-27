@@ -7,6 +7,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.stream.Stream;
 
 public class Java8DateTimeTesting {
 
@@ -16,7 +17,13 @@ public class Java8DateTimeTesting {
 //        testClock();
 //        testDateTimeFormatter();
 //        testPeriod();
-        convertingDateAndCalendarToLocalDateTime();
+//        convertingDateAndCalendarToLocalDateTime();
+        streamTesting();
+
+    }
+
+    private static void streamTesting() {
+        Stream.iterate(2, x -> x + 2).limit(10).forEach(System.out::println);
     }
 
     private static void convertingDateAndCalendarToLocalDateTime() {
